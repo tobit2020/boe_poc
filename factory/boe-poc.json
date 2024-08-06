@@ -1,0 +1,9 @@
+{
+	"name": "boe-poc",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e490b4f1-1b51-43a2-bbf9-a947fe5e83af",
+		"tenantId": "3e0088dc-0629-4ae6-aa8c-813e7a296f50"
+	}
+}

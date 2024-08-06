@@ -1,0 +1,10 @@
+{
+	"name": "boe-poc-managed-private-endpoints",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/d3313606-ce08-408b-8d6e-0965e2fba137/resourceGroups/boe-data-eng-edp-rg/providers/Microsoft.Storage/storageAccounts/boeedpadls",
+		"groupId": "dfs",
+		"fqdns": [
+			"boeedpadls.dfs.core.windows.net"
+		]
+	}
+}
