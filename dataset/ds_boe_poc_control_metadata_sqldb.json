@@ -1,0 +1,12 @@
+{
+	"name": "ds_boe_poc_control_metadata_sqldb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_boe_poc_control_metadata_sqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
