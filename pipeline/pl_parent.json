@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT * FROM [config].[ControlMetadataMock]",
+						"sqlReaderQuery": "SELECT \n    [SourceId],\n    [UseCase],\n    [ProcessType],\n    [Host],\n    [UserName],\n    [SourceAKVSecretName],\n    [SourceDirectory],\n    [SourceFileName],\n    [SourceFileExt],\n    [SourceFileType],\n    [TargetAKVSecretName],\n    [TargetDirectory],\n    [TargetFileName],\n    [TargetFileExt],\n    [SourceArchiveDirectory],\n    [SourceErrorDirectory],\n    [IsActive],\n    [LastModified]\nFROM [config].[PipelineControl]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
