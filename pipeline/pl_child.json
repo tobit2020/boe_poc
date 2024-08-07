@@ -126,7 +126,7 @@
 							"type": "LinkedServiceReference"
 						},
 						"path": {
-							"value": "@item().SourceContainer",
+							"value": "@pipeline().parameters.SourceDirectory",
 							"type": "Expression"
 						}
 					},
@@ -212,11 +212,11 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": {
-								"value": "@item().SourceArchiveDirectory",
+								"value": "@pipeline().parameters.SourceArchiveDirectory",
 								"type": "Expression"
 							},
 							"filename": {
-								"value": "@item().SourceFileName",
+								"value": "@pipeline().parameters.SourceFileName",
 								"type": "Expression"
 							}
 						}
@@ -281,11 +281,11 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": {
-								"value": "@item().SourceDirectory",
+								"value": "@pipeline().parameters.SourceDirectory",
 								"type": "Expression"
 							},
 							"filename": {
-								"value": "@item().SourceFileName",
+								"value": "@pipeline().parameters.SourceFileName",
 								"type": "Expression"
 							}
 						}
