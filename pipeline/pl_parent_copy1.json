@@ -1,0 +1,98 @@
+{
+	"name": "pl_parent_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "lkp_get_control_metadata",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT \n    [SourceId],\n    [UseCase],\n    [ProcessType],\n    [Host],\n    [UserName],\n    [SourceAKVSecretName],\n    [SourceDirectory],\n    [SourceFileName],\n    [SourceFileExt],\n    [SourceFileType],\n    [TargetAKVSecretName],\n    [TargetDirectory],\n    [TargetFileName],\n    [TargetFileExt],\n    [SourceArchiveDirectory],\n    [SourceErrorDirectory],\n    [IsActive],\n    [LastModified]\nFROM [config].[PipelineControl]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_boe_poc_control_metadata_sqldb",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "fe_datasource_get_files",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "lkp_get_control_metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('lkp_get_control_metadata').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "execute child pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pl_child",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"SourceDirectory": {
+										"value": "@item().SourceDirectory",
+										"type": "Expression"
+									},
+									"SourceFileName": {
+										"value": "@item().SourceFileName",
+										"type": "Expression"
+									},
+									"TargetDirectory": {
+										"value": "@item().TargetDirectory",
+										"type": "Expression"
+									},
+									"SourceArchiveDirectory": {
+										"value": "@item().TargetDirectory",
+										"type": "Expression"
+									},
+									"TargetFileName": {
+										"value": "@item().TargetFileName",
+										"type": "Expression"
+									},
+									"SourceErrorDirectory": {
+										"value": "@item().SourceErrorDirectory",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	}
+}

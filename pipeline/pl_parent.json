@@ -5,6 +5,8 @@
 			{
 				"name": "lkp_get_control_metadata",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -31,6 +33,8 @@
 			{
 				"name": "fe_datasource_get_files",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "lkp_get_control_metadata",
