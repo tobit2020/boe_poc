@@ -257,7 +257,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": {
-											"value": "@item().ArchiveContainer",
+											"value": "@item().ArchiveDirectory",
 											"type": "Expression"
 										},
 										"filename": {
