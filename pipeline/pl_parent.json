@@ -156,7 +156,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": {
-											"value": "@item().SourceContainer",
+											"value": "@item().SourceDirectory",
 											"type": "Expression"
 										},
 										"filename": {
@@ -326,7 +326,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": {
-											"value": "@item().SourceContainer",
+											"value": "@item().SourceDirectory",
 											"type": "Expression"
 										},
 										"filename": {
