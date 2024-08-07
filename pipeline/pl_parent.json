@@ -98,7 +98,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": {
-											"value": "@item().SourceContainer",
+											"value": "@item().SourceDirectory",
 											"type": "Expression"
 										},
 										"filename": {
@@ -114,11 +114,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": {
-											"value": "@item().DestinationContainer",
+											"value": "@item().TargetDirectory",
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@item().DestinationFileName",
+											"value": "@item().TargetFileName",
 											"type": "Expression"
 										}
 									}
