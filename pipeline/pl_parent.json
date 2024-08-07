@@ -126,7 +126,7 @@
 							]
 						},
 						{
-							"name": "df_delete_file",
+							"name": "df_delete_success_file",
 							"type": "Delete",
 							"dependsOn": [
 								{
@@ -197,6 +197,52 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "cd_move_files_to_error_folder",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "cd_onprem_to_bronze",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableStaging": false
+							}
+						},
+						{
+							"name": "df_delete_error_file",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "cd_move_files_to_error_folder",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableLogging": true
+							}
 						}
 					]
 				}
