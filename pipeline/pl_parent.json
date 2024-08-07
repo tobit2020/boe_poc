@@ -126,7 +126,7 @@
 							]
 						},
 						{
-							"name": "df_delete_success_file",
+							"name": "df_delete_source_file",
 							"type": "Delete",
 							"dependsOn": [
 								{
