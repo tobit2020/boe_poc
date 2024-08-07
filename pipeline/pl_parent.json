@@ -253,8 +253,70 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"enableStaging": false
-							}
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_boe_poc_source_adls",
+									"type": "DatasetReference",
+									"parameters": {
+										"container": {
+											"value": "@item().SourceContainer",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@item().SourceFileName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_boe_poc_errored_adls",
+									"type": "DatasetReference",
+									"parameters": {
+										"container": {
+											"value": "@item().ErroredContainer",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@item().SourceFileName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						},
 						{
 							"name": "df_delete_error_file",
