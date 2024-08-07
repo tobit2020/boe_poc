@@ -165,6 +165,16 @@
 										}
 									}
 								},
+								"logStorageSettings": {
+									"linkedServiceName": {
+										"referenceName": "ls_boe_poc_source_adls",
+										"type": "LinkedServiceReference"
+									},
+									"path": {
+										"value": "@item().SourceContainer",
+										"type": "Expression"
+									}
+								},
 								"enableLogging": true,
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
@@ -332,7 +342,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": {
-											"value": "@item().ErroredContainer",
+											"value": "@item().ErrorContainer",
 											"type": "Expression"
 										},
 										"filename": {
